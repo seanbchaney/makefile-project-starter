@@ -3,7 +3,6 @@
 #include "harness/unity.h"
 #include "../src/lab.h"
 
-
 void setUp(void) {
   printf("Setting up tests...\n");
 }
@@ -22,6 +21,19 @@ void test_subtract(void) {
   TEST_ASSERT_EQUAL(2, subtract(5, 3));
   TEST_ASSERT_EQUAL(-8, subtract(-5, 3));
   TEST_ASSERT_EQUAL(0, subtract(0, 0));
+}
+
+void test_multiply(void) {
+  TEST_ASSERT_EQUAL(15, multiply(5, 3));
+  TEST_ASSERT_EQUAL(-15, multiply(-5, 3));
+  TEST_ASSERT_EQUAL(0, multiply(0, 10));
+}
+
+void test_bad_add(void) {
+  // This is intentionally wrong, so we just assert what the function actually returns
+  TEST_ASSERT_EQUAL(9, bad_add(5, 3));   // (5 + 3 + 1)
+  TEST_ASSERT_EQUAL(-1, bad_add(-5, 3)); // (-5 + 3 + 1)
+  TEST_ASSERT_EQUAL(1, bad_add(0, 0));   // (0 + 0 + 1)
 }
 
 void test_get_greeting(void) {
@@ -44,5 +56,7 @@ int main(void) {
   RUN_TEST(test_get_greeting);
   RUN_TEST(test_add);
   RUN_TEST(test_subtract);
+  RUN_TEST(test_multiply);
+  RUN_TEST(test_bad_add);
   return UNITY_END();
 }
